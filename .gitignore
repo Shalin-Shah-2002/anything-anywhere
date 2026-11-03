@@ -1,0 +1,14 @@
+# Logged-in traffic, APKs, and reports stay local.
+private/
+*.har
+*.mitm
+*.saz
+*.pcap
+*.pcapng
+*.apk
+*.apks
+*.aab
+.venv/
+__pycache__/
+.DS_Store
+*.xapk

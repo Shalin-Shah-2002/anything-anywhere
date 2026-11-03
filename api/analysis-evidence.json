@@ -1,0 +1,38 @@
+{
+  "artifact_sha256": "4e515e3c5898de3e7949893046ba1aab24899238db4fc6186383ced5b79ce2fd",
+  "package": {
+    "package_name": "com.ndgymtime.membertest",
+    "version_name": "2.5",
+    "version_code": "14",
+    "min_sdk": "28",
+    "target_sdk": "34",
+    "class_count": 23845
+  },
+  "rea_package_evidence_id": "ev_7a98c80a1189251422176d5832af6000e06e85f134260490c96a54a0225b1d04",
+  "rea_transport_evidence_id": "ev_1c2910928c463d407a8bddf3fbe1dcefc244969d994dd60c6af5b46edc7e3faa",
+  "rea_version": "6.8.0",
+  "engine": {
+    "name": "jadx-headless-mcp",
+    "version": "0.7.1",
+    "artifact_sha256": "6e5eacf500b64292bfb73c49797c1958f6ee44646e43e868039ae7feb573ff75",
+    "source_revision": "5844800a486d2248fa949b74c9896285f5b54de2"
+  },
+  "transport_method": {
+    "name": "sendPostRequest",
+    "reported_signature": "sendPostRequest(java.lang.String, java.util.HashMap<java.lang.String, java.lang.String>): java.lang.String",
+    "overload_index": 0,
+    "is_constructor": false,
+    "dex_descriptor": "(Ljava/lang/String;Ljava/util/HashMap;)Ljava/lang/String;"
+  },
+  "transport_representation": "java",
+  "transport_body_status": "available",
+  "transport_fell_back": false,
+  "verified_in_rea_method_source": [
+    "POST",
+    "application/x-www-form-urlencoded",
+    "getPostDataString"
+  ],
+  "request_sites": 30,
+  "distinct_action_values": 24,
+  "runtime_verification": false
+}
