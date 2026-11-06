@@ -1,0 +1,132 @@
+{
+  "tested_date_utc": "2026-11-04",
+  "account_config": "../account.json",
+  "operation_scope": "read-only lookups and biometric attendance; no writes",
+  "successful_requests": [
+    {
+      "action": "login_member",
+      "method": "POST",
+      "endpoint": "https://ahmurban.gymtime.in/AndroidApi/sql_server_api.php",
+      "form": {
+        "action": "login_member",
+        "username": "9601597113",
+        "comp_id": "518"
+      },
+      "http_status": 200,
+      "response_success": 2,
+      "observed_result_fields": [
+        "MemberID",
+        "Name",
+        "Email",
+        "Occupation",
+        "Company_Id",
+        "Address",
+        "DOB"
+      ],
+      "confirmed_identifiers": {
+        "MemberID": "4303",
+        "Company_Id": "518"
+      }
+    },
+    {
+      "action": "show_biometric_attendance",
+      "method": "POST",
+      "endpoint": "https://ahmurban.gymtime.in/AndroidApi/sql_server_api.php",
+      "form": {
+        "action": "show_biometric_attendance",
+        "comp_id": "518",
+        "member_id": "4303"
+      },
+      "http_status": 200,
+      "response_success": 2,
+      "observed_result_fields": [
+        "AttendanceDate"
+      ]
+    },
+    {
+      "action": "show_branch_details",
+      "method": "POST",
+      "endpoint": "https://ahmurban.gymtime.in/AndroidApi/sql_server_api.php",
+      "form": {
+        "action": "show_branch_details",
+        "Company_Id": "518"
+      },
+      "http_status": 200,
+      "response_success": 2,
+      "observed_result_fields": [
+        "Name",
+        "Branch",
+        "Contact",
+        "Branch_id",
+        "Status",
+        "Logo",
+        "Todays_Collection",
+        "Month_Collection",
+        "Address",
+        "TermsAndConditions",
+        "GST_No",
+        "OwnerEmail"
+      ],
+      "confirmed_identifiers": {
+        "Branch_id": "518"
+      }
+    },
+    {
+      "action": "show_domain_url_list",
+      "method": "POST",
+      "endpoint": "http://demo.gymtime.in/AndroidApi/sql_server_api.php",
+      "form": {
+        "action": "show_domain_url_list",
+        "auto_id": "517"
+      },
+      "http_status": 200,
+      "response_success": 2,
+      "observed_result_fields": [
+        "Auto_Id",
+        "Domain_Url"
+      ],
+      "confirmed_server": "https://ahmurban.gymtime.in/"
+    }
+  ],
+  "unsuccessful_requests": [
+    {
+      "action": "show_domain_url_list",
+      "endpoint": "http://demo.gymtime.in/AndroidApi/sql_server_api.php",
+      "auto_id": "GT000518",
+      "http_status": 200,
+      "response_success": 0,
+      "error": "No records found"
+    },
+    {
+      "action": "show_domain_url_list",
+      "endpoint": "http://demo.gymtime.in/AndroidApi/sql_server_api.php",
+      "auto_id": "GT000",
+      "http_status": 200,
+      "response_success": 0,
+      "error": "No records found"
+    },
+    {
+      "action": "login_member",
+      "endpoint": "http://demo.gymtime.in/AndroidApi/sql_server_api.php",
+      "username": "9601597113",
+      "comp_id": "518",
+      "http_status": 200,
+      "response_success": 0,
+      "error": "No records found",
+      "backend_warning": true
+    },
+    {
+      "action": "login_member",
+      "endpoint": "https://ahmurban.gymtime.in/AndroidApi/sql_server_api.php",
+      "username": "9601597113",
+      "comp_id": "517",
+      "http_status": 200,
+      "response_success": 0,
+      "error": "No records found"
+    }
+  ],
+  "password_observed": false,
+  "otp_verified": false,
+  "reusable_session_obtained": false,
+  "personal_response_values": "Only the user-approved username/account identifiers are included. Complete responses and attendance history stay local."
+}

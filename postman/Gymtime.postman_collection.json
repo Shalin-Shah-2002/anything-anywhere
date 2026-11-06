@@ -1,0 +1,945 @@
+{
+  "info": {
+    "_postman_id": "3599badd-4dab-5607-b7ba-8d5f935212fa",
+    "name": "Gymtime Member API",
+    "description": "24 client-observed operations, four live-verified. Import the account environment and send individual requests. Unknown IDs remain blank. No password/token/OTP has been obtained. Raw personal responses are not included.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "VERIFIED",
+      "item": [
+        {
+          "name": "[VERIFIED] login_member",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "login_member",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "{{username}}",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{comp_id}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Member login lookup. Live response success=2 on 2026-11-04."
+          },
+          "response": []
+        },
+        {
+          "name": "[VERIFIED] show_biometric_attendance",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "show_biometric_attendance",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Biometric attendance history. Live response success=2 on 2026-11-04."
+          },
+          "response": []
+        },
+        {
+          "name": "[VERIFIED] show_branch_details",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "show_branch_details",
+                  "type": "text"
+                },
+                {
+                  "key": "Company_Id",
+                  "value": "{{comp_id}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "List company branches. Live response success=2 on 2026-11-04."
+          },
+          "response": []
+        },
+        {
+          "name": "[VERIFIED] show_domain_url_list",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "show_domain_url_list",
+                  "type": "text"
+                },
+                {
+                  "key": "auto_id",
+                  "value": "{{unique_id}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{bootstrap_url}}",
+            "description": "Resolve gym server from gym unique ID. Live response success=2 on 2026-11-04."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "STATIC",
+      "item": [
+        {
+          "name": "[STATIC] CB_GetDaywiseClass",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "CB_GetDaywiseClass",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "DayName",
+                  "value": "{{DayName}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Classes for a day. Static-only: not successfully called during this investigation."
+          },
+          "response": []
+        },
+        {
+          "name": "[STATIC] CB_GetFilledCount",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "CB_GetFilledCount",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "ClassID",
+                  "value": "{{ClassID}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Class_ScheduleID",
+                  "value": "{{Class_ScheduleID}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Booking_Date",
+                  "value": "{{Booking_Date}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Class booking occupancy. Static-only: not successfully called during this investigation."
+          },
+          "response": []
+        },
+        {
+          "name": "[STATIC] show_attendance",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "show_attendance",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "invoice_id",
+                  "value": "{{invoice_id}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Package attendance history. Static-only: not successfully called during this investigation."
+          },
+          "response": []
+        },
+        {
+          "name": "[STATIC] show_balance_trasaction_details",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "show_balance_trasaction_details",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "invoice_id",
+                  "value": "{{invoice_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "financial_yr",
+                  "value": "{{financial_yr}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Payment and balance transactions. Static-only: not successfully called during this investigation."
+          },
+          "response": []
+        },
+        {
+          "name": "[STATIC] show_before_after_photo_by_member_id",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "show_before_after_photo_by_member_id",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Before and after photos. Static-only: not successfully called during this investigation."
+          },
+          "response": []
+        },
+        {
+          "name": "[STATIC] show_diet_to_member",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "show_diet_to_member",
+                  "type": "text"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Assigned diet. Static-only: not successfully called during this investigation."
+          },
+          "response": []
+        },
+        {
+          "name": "[STATIC] show_measurement_by_member",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "show_measurement_by_member",
+                  "type": "text"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Member measurements. Static-only: not successfully called during this investigation."
+          },
+          "response": []
+        },
+        {
+          "name": "[STATIC] show_member_details",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "show_member_details",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Member profile. Static-only: not successfully called during this investigation."
+          },
+          "response": []
+        },
+        {
+          "name": "[STATIC] show_member_details_by_contact",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "show_member_details_by_contact",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "contact",
+                  "value": "{{username}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Member packages and membership details by contact. Static-only: not successfully called during this investigation."
+          },
+          "response": []
+        },
+        {
+          "name": "[STATIC] show_notification",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "show_notification",
+                  "type": "text"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Notifications. Static-only: not successfully called during this investigation."
+          },
+          "response": []
+        },
+        {
+          "name": "[STATIC] show_receipt_data",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "show_receipt_data",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "invoice_id",
+                  "value": "{{invoice_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "financial_yr",
+                  "value": "{{financial_yr}}",
+                  "type": "text"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Receipt data. Static-only: not successfully called during this investigation."
+          },
+          "response": []
+        },
+        {
+          "name": "[STATIC] show_terms_and_coditions_by_company_id",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "show_terms_and_coditions_by_company_id",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Company terms and conditions. Static-only: not successfully called during this investigation."
+          },
+          "response": []
+        },
+        {
+          "name": "[STATIC] show_workout_details",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "show_workout_details",
+                  "type": "text"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "days",
+                  "value": "{{days}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Workout details for a selected day. Static-only: not successfully called during this investigation."
+          },
+          "response": []
+        },
+        {
+          "name": "[STATIC] show_workout_level_days",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "show_workout_level_days",
+                  "type": "text"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Workout levels and days. Static-only: not successfully called during this investigation."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "WRITES",
+      "item": [
+        {
+          "name": "[WRITES] CB_BookClass",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "CB_BookClass",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "ClassID",
+                  "value": "{{ClassID}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Class_ScheduleID",
+                  "value": "{{Class_ScheduleID}}",
+                  "type": "text"
+                },
+                {
+                  "key": "Booking_Date",
+                  "value": "{{Booking_Date}}",
+                  "type": "text"
+                },
+                {
+                  "key": "MemberID",
+                  "value": "{{member_id}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Book a class. Static-only: not successfully called during this investigation. Sending this request changes account data."
+          },
+          "response": []
+        },
+        {
+          "name": "[WRITES] add_member_feedback",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "add_member_feedback",
+                  "type": "text"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "feedback_text",
+                  "value": "{{feedback_text}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Submit member feedback. Static-only: not successfully called during this investigation. Sending this request changes account data."
+          },
+          "response": []
+        },
+        {
+          "name": "[WRITES] make_attendence",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "make_attendence",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "member_id",
+                  "value": "{{member_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "invoice_id",
+                  "value": "{{invoice_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "pack_name",
+                  "value": "{{pack_name}}",
+                  "type": "text"
+                },
+                {
+                  "key": "name",
+                  "value": "{{name}}",
+                  "type": "text"
+                },
+                {
+                  "key": "contact",
+                  "value": "{{username}}",
+                  "type": "text"
+                },
+                {
+                  "key": "balance",
+                  "value": "{{balance}}",
+                  "type": "text"
+                },
+                {
+                  "key": "expiry_date",
+                  "value": "{{expiry_date}}",
+                  "type": "text"
+                },
+                {
+                  "key": "status",
+                  "value": "{{status}}",
+                  "type": "text"
+                },
+                {
+                  "key": "mode",
+                  "value": "MemberApp",
+                  "type": "text"
+                },
+                {
+                  "key": "financial_yr",
+                  "value": "{{financial_yr}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Record attendance. Static-only: not successfully called during this investigation. Sending this request changes account data."
+          },
+          "response": []
+        },
+        {
+          "name": "[WRITES] register_device_token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "register_device_token",
+                  "type": "text"
+                },
+                {
+                  "key": "token",
+                  "value": "{{device_token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "imei_no",
+                  "value": "{{device_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "user_id",
+                  "value": "{{member_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "user",
+                  "value": "Member",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "Register push notification device. Static-only: not successfully called during this investigation. Sending this request changes account data."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "CONFIG",
+      "item": [
+        {
+          "name": "[CONFIG] New_android",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "New_android",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "SMS/OTP configuration helper. Static-only: not successfully called during this investigation. Declared configuration helper used in the app; no helper response or credential value was retrieved."
+          },
+          "response": []
+        },
+        {
+          "name": "[CONFIG] sms_login_creadetials",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "sms_login_creadetials",
+                  "type": "text"
+                },
+                {
+                  "key": "comp_id",
+                  "value": "{{branch_id}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{api_url}}",
+            "description": "SMS configuration helper. Static-only: not successfully called during this investigation. Declared configuration helper used in the app; no helper response or credential value was retrieved."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,694 @@
+{
+  "package_name": "com.ndgymtime.membertest",
+  "app_name": "Gymtime Member",
+  "version_name": "2.5",
+  "version_code": "14",
+  "analysis_type": "static APK analysis with selected live API validation",
+  "runtime_verified": false,
+  "artifact": {
+    "download_page": "https://apkpure.net/gymtime-member/com.ndgymtime.membertest/download",
+    "source_kind": "third-party mirror; publisher authenticity not independently verified",
+    "xapk_sha256": "64c93e54371b66751c8a77bbb2ff906f093bd36c4e3b53c6f54703a77da4cc34",
+    "base_apk_sha256": "4e515e3c5898de3e7949893046ba1aab24899238db4fc6186383ced5b79ce2fd"
+  },
+  "endpoints": {
+    "bootstrap": {
+      "url": "http://demo.gymtime.in/AndroidApi/sql_server_api.php",
+      "source_class": "com.ndgymtime.membertest.utils.ServiceUrls",
+      "source_field": "MAIN_API"
+    },
+    "tenant": {
+      "url_template": "{Domain_Url}/AndroidApi/sql_server_api.php",
+      "domain_source": "result[].Domain_Url from show_domain_url_list",
+      "source_class": "com.ndgymtime.membertest.utils.SharedPrefereneceUtil",
+      "local_preference": "MyDomain/DomainUrl"
+    }
+  },
+  "content_type": "application/x-www-form-urlencoded",
+  "dispatch_field": "action",
+  "operation_count": 24,
+  "request_site_count": 30,
+  "operations": [
+    {
+      "action": "CB_BookClass",
+      "purpose": "Book a class",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "comp_id",
+        "ClassID",
+        "Class_ScheduleID",
+        "Booking_Date",
+        "MemberID"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "write",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.classbooking.ClassFilledViewModel",
+          "derived_java_line": 291,
+          "derived_java_sha256": "47eaf20de150b9ad4b6addd2526727a844985382711966940bbdbfcf54976330"
+        }
+      ]
+    },
+    {
+      "action": "CB_GetDaywiseClass",
+      "purpose": "Classes for a day",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "comp_id",
+        "DayName"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.classbooking.ClassViewModel",
+          "derived_java_line": 185,
+          "derived_java_sha256": "cd1594a1b127c6649d0676727cd2220dae63fcc4797dc01bfdbee014761829be"
+        }
+      ]
+    },
+    {
+      "action": "CB_GetFilledCount",
+      "purpose": "Class booking occupancy",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "comp_id",
+        "ClassID",
+        "Class_ScheduleID",
+        "Booking_Date"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.classbooking.ClassFilledViewModel",
+          "derived_java_line": 134,
+          "derived_java_sha256": "47eaf20de150b9ad4b6addd2526727a844985382711966940bbdbfcf54976330"
+        }
+      ]
+    },
+    {
+      "action": "New_android",
+      "purpose": "SMS/OTP configuration helper",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "sensitive_configuration",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.login.LoginOtpActivity",
+          "derived_java_line": 801,
+          "derived_java_sha256": "3f4d1692d661146011a2c674b9a0b915d680669361af69206120e80f3adbcab3"
+        }
+      ]
+    },
+    {
+      "action": "add_member_feedback",
+      "purpose": "Submit member feedback",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "member_id",
+        "feedback_text"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "write",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.FeedbackActivity",
+          "derived_java_line": 155,
+          "derived_java_sha256": "51b3da5bdacea10e284e50f586f2f9d2429b02624b510afebef4e93ff6b289f8"
+        }
+      ]
+    },
+    {
+      "action": "login_member",
+      "purpose": "Member login lookup",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "username",
+        "comp_id"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "login",
+      "runtime_verified": true,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.login.LoginOtpActivity",
+          "derived_java_line": 590,
+          "derived_java_sha256": "3f4d1692d661146011a2c674b9a0b915d680669361af69206120e80f3adbcab3"
+        },
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.login.UniqueIdViewModel",
+          "derived_java_line": 394,
+          "derived_java_sha256": "d3d4e478f3dd7d4fd836ba8033578f6765eb2f9c6eeeb3ef7d494ed6589af4d0"
+        }
+      ],
+      "live_validation": {
+        "date_utc": "2026-11-04",
+        "http_status": 200,
+        "success": 2,
+        "reference": "live-validation.json"
+      }
+    },
+    {
+      "action": "make_attendence",
+      "purpose": "Record attendance",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "comp_id",
+        "member_id",
+        "invoice_id",
+        "pack_name",
+        "name",
+        "contact",
+        "balance",
+        "expiry_date",
+        "status",
+        "mode",
+        "financial_yr"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "write",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.AddAttendanceActivity",
+          "derived_java_line": 297,
+          "derived_java_sha256": "db000a48baa3120278a48b2195e27b3f4b27c127aede2e77d7ce5ffbd2b2d98c"
+        }
+      ],
+      "observed_constant_fields": {
+        "mode": "MemberApp"
+      },
+      "client_date_format": {
+        "expiry_date": "dd-MM-yyyy"
+      }
+    },
+    {
+      "action": "register_device_token",
+      "purpose": "Register push notification device",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "token",
+        "imei_no",
+        "user_id",
+        "user"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "write",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.MainActivity",
+          "derived_java_line": 603,
+          "derived_java_sha256": "1771acee2e446ca3f5a652cfdf71f9edace36d2c6b4f386f9f3429999546696c"
+        }
+      ],
+      "observed_constant_fields": {
+        "user": "Member"
+      }
+    },
+    {
+      "action": "show_attendance",
+      "purpose": "Package attendance history",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "comp_id",
+        "member_id",
+        "invoice_id"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.AttendanceList",
+          "derived_java_line": 384,
+          "derived_java_sha256": "0d0fe48ebfca8e2b33ff20f89cd98b3113eaf3d60691b1824d957c1270565d2e"
+        },
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.packagefragments.AttendanceViewModel",
+          "derived_java_line": 193,
+          "derived_java_sha256": "47adda8754e88fdac8ef7d970c0793221b86025b617ed8bc122e4f00771f00f0"
+        }
+      ]
+    },
+    {
+      "action": "show_balance_trasaction_details",
+      "purpose": "Payment and balance transactions",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "comp_id",
+        "member_id",
+        "invoice_id",
+        "financial_yr"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.packagefragments.PaymentsFragment",
+          "derived_java_line": 245,
+          "derived_java_sha256": "6018a571832351e952449703b2883cabb88aee0a80905a2e4e5e770c54ddc04f"
+        }
+      ]
+    },
+    {
+      "action": "show_before_after_photo_by_member_id",
+      "purpose": "Before and after photos",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "comp_id",
+        "member_id"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.MainActivity",
+          "derived_java_line": 520,
+          "derived_java_sha256": "1771acee2e446ca3f5a652cfdf71f9edace36d2c6b4f386f9f3429999546696c"
+        },
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.adapters.HomeAdapter",
+          "derived_java_line": 389,
+          "derived_java_sha256": "15c60a2d08813703f7c73ce94543248cb53237112213030c6acebe87a9449bdc"
+        },
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.nav.MemberPhotoDetails",
+          "derived_java_line": 226,
+          "derived_java_sha256": "9d5d964ffbc709a6f64f4f8d7b3417940e4587493efab1420156790db6c0afb7"
+        }
+      ]
+    },
+    {
+      "action": "show_biometric_attendance",
+      "purpose": "Biometric attendance history",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "comp_id",
+        "member_id"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": true,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.AttendanceList",
+          "derived_java_line": 304,
+          "derived_java_sha256": "0d0fe48ebfca8e2b33ff20f89cd98b3113eaf3d60691b1824d957c1270565d2e"
+        },
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.BiometricAttendance",
+          "derived_java_line": 245,
+          "derived_java_sha256": "ef9c8075e0f4d8153f59f563adece11ebee444883117cfdb8e9d68562f0ad350"
+        }
+      ],
+      "live_validation": {
+        "date_utc": "2026-11-04",
+        "http_status": 200,
+        "success": 2,
+        "reference": "live-validation.json"
+      }
+    },
+    {
+      "action": "show_branch_details",
+      "purpose": "List company branches",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "Company_Id"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": true,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.login.LoginOtpActivity",
+          "derived_java_line": 396,
+          "derived_java_sha256": "3f4d1692d661146011a2c674b9a0b915d680669361af69206120e80f3adbcab3"
+        }
+      ],
+      "live_validation": {
+        "date_utc": "2026-11-04",
+        "http_status": 200,
+        "success": 2,
+        "reference": "live-validation.json"
+      }
+    },
+    {
+      "action": "show_diet_to_member",
+      "purpose": "Assigned diet",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "member_id",
+        "comp_id"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.viewmodels.DietViewModel",
+          "derived_java_line": 180,
+          "derived_java_sha256": "aec411e72b2305bc369e15c8eddbfa0b1fc2440e762335fec8b9a60f663c0914"
+        }
+      ]
+    },
+    {
+      "action": "show_domain_url_list",
+      "purpose": "Resolve gym server from gym unique ID",
+      "method": "POST",
+      "endpoint": "bootstrap",
+      "form_fields": [
+        "action",
+        "auto_id"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": true,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.login.UniqueIdViewModel",
+          "derived_java_line": 1790,
+          "derived_java_sha256": "d3d4e478f3dd7d4fd836ba8033578f6765eb2f9c6eeeb3ef7d494ed6589af4d0"
+        }
+      ],
+      "live_validation": {
+        "date_utc": "2026-11-04",
+        "http_status": 200,
+        "success": 2,
+        "reference": "live-validation.json"
+      }
+    },
+    {
+      "action": "show_measurement_by_member",
+      "purpose": "Member measurements",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "member_id"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.viewmodels.MeasurementViewModel",
+          "derived_java_line": 174,
+          "derived_java_sha256": "887225e015c3c7922fc6d7f8d9665936abf2eefb7c0532857092004a731101bc"
+        }
+      ]
+    },
+    {
+      "action": "show_member_details",
+      "purpose": "Member profile",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "comp_id",
+        "member_id"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.MemberProfileActivity",
+          "derived_java_line": 191,
+          "derived_java_sha256": "dc1a279a99f6044cfe985c3bcf3adfdbd7b11a683b15dc8d68ff82f9c4359f74"
+        }
+      ]
+    },
+    {
+      "action": "show_member_details_by_contact",
+      "purpose": "Member packages and membership details by contact",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "comp_id",
+        "contact"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.viewmodels.HomeViewModel",
+          "derived_java_line": 191,
+          "derived_java_sha256": "47759c1fed32faec3bed9f717dfcfc048f1bc1a09170880f1dbf9acde5bdb647"
+        }
+      ]
+    },
+    {
+      "action": "show_notification",
+      "purpose": "Notifications",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "member_id",
+        "comp_id"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.NotificationActivity",
+          "derived_java_line": 282,
+          "derived_java_sha256": "5220bb7e67388540a0b4ecc547e096886ec339972a75b6d7f5383874ea68132d"
+        }
+      ]
+    },
+    {
+      "action": "show_receipt_data",
+      "purpose": "Receipt data",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "comp_id",
+        "invoice_id",
+        "financial_yr",
+        "member_id"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.utils.PDFGenerator",
+          "derived_java_line": 127,
+          "derived_java_sha256": "59df4a75794d3962e755d794d727a1e42df2a2c8fca6000ac31728c1ebd63f43"
+        }
+      ]
+    },
+    {
+      "action": "show_terms_and_coditions_by_company_id",
+      "purpose": "Company terms and conditions",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "comp_id"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.PrivacyPolicy",
+          "derived_java_line": 203,
+          "derived_java_sha256": "3cf288e89965546ef8e6ebbfd06bf6219804393ab1767ed74bba22e8cf4bfbc3"
+        }
+      ]
+    },
+    {
+      "action": "show_workout_details",
+      "purpose": "Workout details for a selected day",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "member_id",
+        "comp_id",
+        "days"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.viewmodels.WorkoutDetailsViewModel",
+          "derived_java_line": 196,
+          "derived_java_sha256": "5c5b4eca55c4236a7ff918f827518a922376a28ac5dfa5392c371fe70c418a5f"
+        }
+      ]
+    },
+    {
+      "action": "show_workout_level_days",
+      "purpose": "Workout levels and days",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "member_id",
+        "comp_id"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "read",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.viewmodels.WorkoutViewModel",
+          "derived_java_line": 198,
+          "derived_java_sha256": "41f8c5fafc7946cd0fd937c6e83ef9f9d41559d83016b61dbd08d60fc22dcdb2"
+        }
+      ]
+    },
+    {
+      "action": "sms_login_creadetials",
+      "purpose": "SMS configuration helper",
+      "method": "POST",
+      "endpoint": "tenant",
+      "form_fields": [
+        "action",
+        "comp_id"
+      ],
+      "server_required_fields": "unverified; fields listed are those the client supplies",
+      "effect": "sensitive_configuration",
+      "runtime_verified": false,
+      "sources": [
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.MainActivity",
+          "derived_java_line": 677,
+          "derived_java_sha256": "1771acee2e446ca3f5a652cfdf71f9edace36d2c6b4f386f9f3429999546696c"
+        },
+        {
+          "dex_entry": "classes3.dex",
+          "class": "com.ndgymtime.membertest.login.UniqueIdViewModel",
+          "derived_java_line": 496,
+          "derived_java_sha256": "d3d4e478f3dd7d4fd836ba8033578f6765eb2f9c6eeeb3ef7d494ed6589af4d0"
+        }
+      ]
+    }
+  ],
+  "other_declared_endpoint_candidates": [
+    {
+      "url": "http://103.156.21.183:1826/AndroidApi/sql_server_api.php",
+      "source": "com.ndgymtime.membertest.utils.ServiceUrls.API",
+      "usage": "declared constant; no call site found in inspected application classes"
+    },
+    {
+      "url_template": "{Domain_Url}/upload.php",
+      "source": "com.ndgymtime.membertest.utils.ServiceUrls.UPLOAD_URL",
+      "usage": "declared constant; no call site found in inspected application classes"
+    }
+  ],
+  "limitations": [
+    "Third-party mirrored version 2.5/code 14 is older than the current Play listing; the installed version may differ.",
+    "Four actions have successful live responses recorded on 2026-11-04; all other actions remain static-only.",
+    "No app execution, connected-phone traffic capture, API write operation, or OTP verification was performed.",
+    "Client request construction does not establish server-side required fields or authorization rules.",
+    "No password, OTP, bearer token, or reusable session was supplied or obtained.",
+    "Invoice IDs, financial year values, and class/schedule IDs were not obtained.",
+    "JADX has incomplete reconstruction in some coroutine handlers; cataloged request construction rows were readable.",
+    "Derived Java line numbers/hashes refer to local JADX 1.5.6 output, not original developer source."
+  ],
+  "analysis_tools": {
+    "rea": "6.8.0",
+    "rea_node": "24.22.1",
+    "rea_jadx_engine": "0.7.1",
+    "bulk_jadx": "1.5.6",
+    "app_top_level_classes_written": 168
+  },
+  "runtime_verification": {
+    "status": "partial",
+    "tested_date_utc": "2026-11-04",
+    "verified_actions": [
+      "login_member",
+      "show_biometric_attendance",
+      "show_branch_details",
+      "show_domain_url_list"
+    ],
+    "source": "live-validation.json",
+    "all_operations_verified": false
+  },
+  "client_login_preprocessing": {
+    "source_class": "com.ndgymtime.membertest.login.LoginActivity",
+    "source_method": "onCreate$lambda$1",
+    "company_code_transform": "substring(5): remove the first five characters of the app company code",
+    "username_source": "mobile-number input",
+    "password_field_observed": false,
+    "otp_flow": "separate interactive app screen; no OTP obtained or supplied"
+  }
+}

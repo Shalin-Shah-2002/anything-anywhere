@@ -1,0 +1,838 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Gymtime Member API, observed client contract",
+    "version": "2.5-static-plus-2026-11-04-live",
+    "description": "24 dispatch action values. Four successfully verified; remaining actions are static-only. An account guide and Postman environment are provided separately."
+  },
+  "servers": [
+    {
+      "url": "https://ahmurban.gymtime.in",
+      "description": "Confirmed tenant server for the published account"
+    },
+    {
+      "url": "http://demo.gymtime.in",
+      "description": "Bootstrap server for show_domain_url_list"
+    }
+  ],
+  "paths": {
+    "/AndroidApi/sql_server_api.php": {
+      "post": {
+        "operationId": "dispatchGymtimeAction",
+        "summary": "Dispatch a form-encoded Gymtime operation",
+        "description": "Select action and a corresponding form shape. show_domain_url_list uses the bootstrap server; account actions use the resolved tenant server. Write operations change data. Only action is marked required; other fields are client-observed. No API write operation was executed.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/CB_BookClassRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CB_GetDaywiseClassRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CB_GetFilledCountRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/New_androidRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/add_member_feedbackRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/login_memberRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/make_attendenceRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/register_device_tokenRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/show_attendanceRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/show_balance_trasaction_detailsRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/show_before_after_photo_by_member_idRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/show_biometric_attendanceRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/show_branch_detailsRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/show_diet_to_memberRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/show_domain_url_listRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/show_measurement_by_memberRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/show_member_detailsRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/show_member_details_by_contactRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/show_notificationRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/show_receipt_dataRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/show_terms_and_coditions_by_company_idRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/show_workout_detailsRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/show_workout_level_daysRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/sms_login_creadetialsRequest"
+                  }
+                ]
+              },
+              "examples": {
+                "login_member": {
+                  "value": {
+                    "action": "login_member",
+                    "username": "9601597113",
+                    "comp_id": "518"
+                  }
+                },
+                "show_biometric_attendance": {
+                  "value": {
+                    "action": "show_biometric_attendance",
+                    "comp_id": "518",
+                    "member_id": "4303"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Inspect success/error in the body; HTTP status alone is insufficient.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CB_BookClassRequest": {
+        "type": "object",
+        "description": "Book a class. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "CB_BookClass",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "ClassID": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "Class_ScheduleID": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "Booking_Date": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "MemberID": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "write",
+        "x-runtime-verified": false
+      },
+      "CB_GetDaywiseClassRequest": {
+        "type": "object",
+        "description": "Classes for a day. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "CB_GetDaywiseClass",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "DayName": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": false
+      },
+      "CB_GetFilledCountRequest": {
+        "type": "object",
+        "description": "Class booking occupancy. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "CB_GetFilledCount",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "ClassID": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "Class_ScheduleID": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "Booking_Date": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": false
+      },
+      "New_androidRequest": {
+        "type": "object",
+        "description": "SMS/OTP configuration helper. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "New_android",
+            "description": "Exact dispatch value observed in the client."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "sensitive_configuration",
+        "x-runtime-verified": false
+      },
+      "add_member_feedbackRequest": {
+        "type": "object",
+        "description": "Submit member feedback. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "add_member_feedback",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "member_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "feedback_text": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "write",
+        "x-runtime-verified": false
+      },
+      "login_memberRequest": {
+        "type": "object",
+        "description": "Member login lookup. Evidence: live-verified 2026-11-04.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "login_member",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "username": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "login",
+        "x-runtime-verified": true
+      },
+      "make_attendenceRequest": {
+        "type": "object",
+        "description": "Record attendance. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "make_attendence",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "member_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "invoice_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "pack_name": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "name": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "contact": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "balance": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "expiry_date": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified. Client formatting: dd-MM-yyyy."
+          },
+          "status": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "mode": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified.",
+            "const": "MemberApp"
+          },
+          "financial_yr": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "write",
+        "x-runtime-verified": false
+      },
+      "register_device_tokenRequest": {
+        "type": "object",
+        "description": "Register push notification device. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "register_device_token",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "token": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "imei_no": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "user_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "user": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified.",
+            "const": "Member"
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "write",
+        "x-runtime-verified": false
+      },
+      "show_attendanceRequest": {
+        "type": "object",
+        "description": "Package attendance history. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "show_attendance",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "member_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "invoice_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": false
+      },
+      "show_balance_trasaction_detailsRequest": {
+        "type": "object",
+        "description": "Payment and balance transactions. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "show_balance_trasaction_details",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "member_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "invoice_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "financial_yr": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": false
+      },
+      "show_before_after_photo_by_member_idRequest": {
+        "type": "object",
+        "description": "Before and after photos. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "show_before_after_photo_by_member_id",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "member_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": false
+      },
+      "show_biometric_attendanceRequest": {
+        "type": "object",
+        "description": "Biometric attendance history. Evidence: live-verified 2026-11-04.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "show_biometric_attendance",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "member_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": true
+      },
+      "show_branch_detailsRequest": {
+        "type": "object",
+        "description": "List company branches. Evidence: live-verified 2026-11-04.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "show_branch_details",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "Company_Id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": true
+      },
+      "show_diet_to_memberRequest": {
+        "type": "object",
+        "description": "Assigned diet. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "show_diet_to_member",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "member_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": false
+      },
+      "show_domain_url_listRequest": {
+        "type": "object",
+        "description": "Resolve gym server from gym unique ID. Evidence: live-verified 2026-11-04.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "show_domain_url_list",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "auto_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": true
+      },
+      "show_measurement_by_memberRequest": {
+        "type": "object",
+        "description": "Member measurements. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "show_measurement_by_member",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "member_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": false
+      },
+      "show_member_detailsRequest": {
+        "type": "object",
+        "description": "Member profile. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "show_member_details",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "member_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": false
+      },
+      "show_member_details_by_contactRequest": {
+        "type": "object",
+        "description": "Member packages and membership details by contact. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "show_member_details_by_contact",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "contact": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": false
+      },
+      "show_notificationRequest": {
+        "type": "object",
+        "description": "Notifications. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "show_notification",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "member_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": false
+      },
+      "show_receipt_dataRequest": {
+        "type": "object",
+        "description": "Receipt data. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "show_receipt_data",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "invoice_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "financial_yr": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "member_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": false
+      },
+      "show_terms_and_coditions_by_company_idRequest": {
+        "type": "object",
+        "description": "Company terms and conditions. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "show_terms_and_coditions_by_company_id",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": false
+      },
+      "show_workout_detailsRequest": {
+        "type": "object",
+        "description": "Workout details for a selected day. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "show_workout_details",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "member_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "days": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": false
+      },
+      "show_workout_level_daysRequest": {
+        "type": "object",
+        "description": "Workout levels and days. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "show_workout_level_days",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "member_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "read",
+        "x-runtime-verified": false
+      },
+      "sms_login_creadetialsRequest": {
+        "type": "object",
+        "description": "SMS configuration helper. Evidence: static request construction only.",
+        "properties": {
+          "action": {
+            "type": "string",
+            "const": "sms_login_creadetials",
+            "description": "Exact dispatch value observed in the client."
+          },
+          "comp_id": {
+            "type": "string",
+            "description": "Sent by the inspected client; server-required status is unverified."
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "x-operation-effect": "sensitive_configuration",
+        "x-runtime-verified": false
+      },
+      "ResponseEnvelope": {
+        "type": "object",
+        "description": "Observed response envelope. Not a complete server contract; HTTP 200 can carry success=0. Warnings before JSON were also observed.",
+        "properties": {
+          "success": {
+            "type": [
+              "integer",
+              "string"
+            ]
+          },
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "x-client-package": "com.ndgymtime.membertest",
+  "x-verified-actions": [
+    "login_member",
+    "show_biometric_attendance",
+    "show_branch_details",
+    "show_domain_url_list"
+  ],
+  "x-password-status": "No password supplied or observed; no password field in the observed login_member request."
+}

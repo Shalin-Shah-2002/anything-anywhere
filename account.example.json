@@ -1,0 +1,14 @@
+{
+  "username": "<your-mobile-number>",
+  "unique_id": "<gym-server-unique-id>",
+  "company_code": "<full-app-company-code>",
+  "comp_id": "<company-code-substring-after-the-first-five-characters>",
+  "branch_id": "<branch-id-from-branch-response>",
+  "member_id": "<MemberID-from-login-response>",
+  "base_url": "<Domain_Url-from-server-discovery>",
+  "api_url": "<Domain_Url>/AndroidApi/sql_server_api.php",
+  "bootstrap_url": "http://demo.gymtime.in/AndroidApi/sql_server_api.php",
+  "password": null,
+  "otp": null,
+  "session_token": null
+}
