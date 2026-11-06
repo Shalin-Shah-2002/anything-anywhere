@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en" data-view="login">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0b12" />
+    <title>Gymtime · Attendance</title>
+    <meta
+      name="description"
+      content="Sign in to your Gymtime membership and track your biometric attendance, streaks, and visit history."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Ambient animated background -->
+    <div class="backdrop" aria-hidden="true">
+      <span class="blob blob--1"></span>
+      <span class="blob blob--2"></span>
+      <span class="blob blob--3"></span>
+      <div class="grid-overlay"></div>
+    </div>
+
+    <!-- ===================== LOGIN ===================== -->
+    <main class="auth" id="loginView">
+      <section class="auth-card glass" role="dialog" aria-labelledby="authTitle">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" width="34" height="34">
+              <defs>
+                <linearGradient id="bmA" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#8b7bff" />
+                  <stop offset="1" stop-color="#43e2ff" />
+                </linearGradient>
+              </defs>
+              <path
+                fill="url(#bmA)"
+                d="M14 18h4v12h-4zM30 18h4v12h-4zM10 21h4v6h-4zM34 21h4v6h-4zM18 22h12v4H18z"
+              />
+            </svg>
+            <span class="pulse-ring"></span>
+          </span>
+          <div class="brand-text">
+            <strong>Gymtime</strong>
+            <span>Member Attendance</span>
+          </div>
+        </div>
+
+        <h1 id="authTitle">Welcome back</h1>
+        <p class="auth-sub">Sign in with your membership details to view your biometric attendance.</p>
+
+        <form id="loginForm" novalidate>
+          <div class="field">
+            <label for="uniqueId">Gym Unique Id</label>
+            <div class="control">
+              <svg class="control-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 0 1 5 5c0 2.5-2 4.5-5 8-3-3.5-5-5.5-5-8a5 5 0 0 1 5-5Zm0 3a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/><path d="M5 20h14v2H5z"/></svg>
+              <input id="uniqueId" name="uniqueId" inputmode="numeric" autocomplete="off" placeholder="e.g. 517" />
+            </div>
+            <small class="hint">Resolves your gym's server. Leave blank only if you know your server.</small>
+          </div>
+
+          <div class="field">
+            <label for="companyCode">Company code</label>
+            <div class="control">
+              <svg class="control-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Zm3 4v2h10V7Zm0 4v2h10v-2Zm0 4v2h6v-2Z"/></svg>
+              <input id="companyCode" name="companyCode" autocomplete="off" placeholder="e.g. GT000518" />
+            </div>
+            <small class="hint">Your full code from the app. The portal derives the API id automatically.</small>
+          </div>
+
+          <div class="field">
+            <label for="mobile">Mobile number</label>
+            <div class="control">
+              <svg class="control-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm0 4v12h10V6Zm3 13h4v1h-4Z"/></svg>
+              <input id="mobile" name="mobile" inputmode="numeric" autocomplete="username" placeholder="Registered mobile number" />
+            </div>
+          </div>
+
+          <div class="form-error" id="loginError" role="alert" hidden></div>
+
+          <button type="submit" class="btn btn--primary" id="loginBtn">
+            <span class="btn-label">Sign in</span>
+            <span class="spinner" aria-hidden="true"></span>
+          </button>
+        </form>
+
+        <p class="auth-note">
+          This is a member lookup, exactly as the official app performs it — no password is stored or
+          required. Requests are read-only.
+        </p>
+      </section>
+
+      <footer class="auth-foot">
+        Built on the documented Gymtime <code>AndroidApi</code> · read-only
+      </footer>
+    </main>
+
+    <!-- ===================== DASHBOARD ===================== -->
+    <div class="app" id="dashboardView" hidden>
+      <header class="topbar glass">
+        <div class="topbar-brand">
+          <span class="brand-mark brand-mark--sm" aria-hidden="true">
+            <svg viewBox="0 0 48 48" width="22" height="22">
+              <path fill="url(#bm)" d="M14 18h4v12h-4zM30 18h4v12h-4zM10 21h4v6h-4zM34 21h4v6h-4zM18 22h12v4H18z" />
+            </svg>
+          </span>
+          <div class="topbar-gym">
+            <strong id="gymName">Gymtime</strong>
+            <span id="branchName">Member Attendance</span>
+          </div>
+        </div>
+        <div class="topbar-user">
+          <div class="who">
+            <span class="who-name" id="userName">Member</span>
+            <span class="who-id" id="userId">—</span>
+          </div>
+          <span class="avatar" id="avatar" aria-hidden="true">M</span>
+          <button class="btn btn--ghost btn--icon" id="logoutBtn" title="Sign out" aria-label="Sign out">
+            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M10 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6v-2h6V5h-6Zm-.7 5.3 1.4 1.4L9.4 11H16v2H9.4l1.3 1.3-1.4 1.4L5.6 12Z"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="dash">
+        <!-- Profile + headline stat -->
+        <section class="hero glass card reveal">
+          <div class="hero-main">
+            <span class="avatar avatar--lg" id="heroAvatar" aria-hidden="true">M</span>
+            <div class="hero-id">
+              <h2 id="heroName">Member</h2>
+              <p class="hero-meta" id="heroMeta"></p>
+              <div class="chips" id="heroChips"></div>
+            </div>
+          </div>
+          <div class="hero-head-stat">
+            <span class="hhs-value" id="totalVisits">0</span>
+            <span class="hhs-label">biometric check-ins</span>
+          </div>
+        </section>
+
+        <!-- Stat tiles -->
+        <section class="stat-grid">
+          <article class="stat glass card reveal" style="--d: 1">
+            <div class="stat-ic stat-ic--fire">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2c1 3-1 4-1 6 0 1 1 2 2 2 2 0 3-2 3-2 1 2 2 3 2 6a6 6 0 1 1-12 0c0-3 2-5 3-6 1 2 2 2 3 1 1-1 0-4-3-7Z"/></svg>
+            </div>
+            <div class="stat-body">
+              <span class="stat-value" id="currentStreak">0</span>
+              <span class="stat-label">Current streak</span>
+            </div>
+            <span class="stat-sub" id="currentStreakSub">days</span>
+          </article>
+
+          <article class="stat glass card reveal" style="--d: 2">
+            <div class="stat-ic stat-ic--gold">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 4h14v3a5 5 0 0 1-4 4.9V14h2v2h-2v2h3v2H8v-2h3v-2H9v-2h2v-2.1A5 5 0 0 1 7 7V4Z"/></svg>
+            </div>
+            <div class="stat-body">
+              <span class="stat-value" id="longestStreak">0</span>
+              <span class="stat-label">Longest streak</span>
+            </div>
+            <span class="stat-sub">days</span>
+          </article>
+
+          <article class="stat glass card reveal" style="--d: 3">
+            <div class="stat-ic stat-ic--blue">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path d="M7 2h2v2h6V2h2v2h2a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h2Zm13 6H4v12h16Z"/></svg>
+            </div>
+            <div class="stat-body">
+              <span class="stat-value" id="thisMonth">0</span>
+              <span class="stat-label">This month</span>
+            </div>
+            <span class="stat-sub" id="thisMonthName"></span>
+          </article>
+
+          <article class="stat glass card reveal" style="--d: 4">
+            <div class="stat-ic stat-ic--green">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 5h-2v6l5 3 1-1.7-4-2.3Z"/></svg>
+            </div>
+            <div class="stat-body">
+              <span class="stat-value" id="lastVisit">—</span>
+              <span class="stat-label">Last visit</span>
+            </div>
+            <span class="stat-sub" id="lastVisitDate"></span>
+          </article>
+        </section>
+
+        <!-- Activity heatmap -->
+        <section class="panel glass card reveal">
+          <div class="panel-head">
+            <div>
+              <h3>Activity</h3>
+              <p class="panel-sub" id="heatmapSub">Your check-ins over the last year</p>
+            </div>
+            <div class="legend">
+              <span>Less</span>
+              <i class="lvl lvl-0"></i><i class="lvl lvl-1"></i><i class="lvl lvl-2"></i
+              ><i class="lvl lvl-3"></i><i class="lvl lvl-4"></i>
+              <span>More</span>
+            </div>
+          </div>
+          <div class="heatmap-wrap">
+            <div class="heatmap" id="heatmap"></div>
+          </div>
+          <div class="heatmap-tip" id="heatTip" hidden></div>
+        </section>
+
+        <div class="split">
+          <!-- Monthly calendar -->
+          <section class="panel glass card reveal">
+            <div class="panel-head">
+              <h3>Calendar</h3>
+              <div class="cal-nav">
+                <button class="btn btn--ghost btn--icon" id="calPrev" aria-label="Previous month">
+                  <svg viewBox="0 0 24 24" width="16" height="16"><path d="M15 6l-6 6 6 6"/></svg>
+                </button>
+                <span id="calLabel" class="cal-label">—</span>
+                <button class="btn btn--ghost btn--icon" id="calNext" aria-label="Next month">
+                  <svg viewBox="0 0 24 24" width="16" height="16"><path d="M9 6l6 6-6 6"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="cal-dow">
+              <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+            </div>
+            <div class="calendar" id="calendar"></div>
+          </section>
+
+          <!-- Recent visits + monthly bars -->
+          <section class="panel glass card reveal">
+            <div class="panel-head">
+              <h3>Recent visits</h3>
+              <span class="pill" id="recentPill">—</span>
+            </div>
+            <ul class="recent" id="recent"></ul>
+            <div class="bars-head">
+              <h4>Last 6 months</h4>
+            </div>
+            <div class="bars" id="bars"></div>
+          </section>
+        </div>
+
+        <footer class="dash-foot">
+          Read-only biometric attendance via the Gymtime <code>AndroidApi</code>. Dates shown are
+          <code>AttendanceDate</code> records; no check-in/out times are exposed by the API.
+        </footer>
+      </main>
+    </div>
+
+    <!-- Full-screen loader while fetching attendance -->
+    <div class="overlay" id="overlay" hidden>
+      <div class="overlay-card glass">
+        <span class="spinner spinner--lg"></span>
+        <p id="overlayText">Loading your attendance…</p>
+      </div>
+    </div>
+
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <linearGradient id="bm" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#8b7bff" />
+          <stop offset="1" stop-color="#43e2ff" />
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

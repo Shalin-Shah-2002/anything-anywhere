@@ -1,0 +1,16 @@
+{
+  "name": "gymtime-attendance-portal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A polished web client for Gymtime member sign-in and biometric attendance, built on the documented AndroidApi endpoints.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

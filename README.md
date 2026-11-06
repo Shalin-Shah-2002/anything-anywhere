@@ -7,6 +7,22 @@ Reverse engineering of **Gymtime Member** (`com.ndgymtime.membertest`), APK
 Gym server lookup, member login lookup, branch lookup, and biometric attendance
 were successfully called on **4 November 2026**. Other entries remain static-only.
 
+## Web portal — sign in and track attendance
+
+A polished, **read-only** web client built on these endpoints lives in
+[`app/`](app/). It signs a member in and visualises their **biometric
+attendance**: current/longest streaks, a year-long activity heatmap, a monthly
+calendar, recent visits, and a per-month chart.
+
+```sh
+cd app && npm start      # no dependencies; Node 18+
+# open http://localhost:3000
+```
+
+It performs only the documented read operations (`show_domain_url_list`,
+`login_member`, `show_branch_details`, `show_biometric_attendance`) and locks
+outbound calls to `*.gymtime.in`. See [`app/README.md`](app/README.md).
+
 ## Start here
 
 - [My account: username, codes, IDs, and password status](MY_ACCOUNT.md)
