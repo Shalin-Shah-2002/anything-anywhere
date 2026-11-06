@@ -1,0 +1,18 @@
+{
+  "username": "9601597113",
+  "unique_id": "517",
+  "company_code": "GT000518",
+  "comp_id": "518",
+  "branch_id": "518",
+  "member_id": "4303",
+  "gym": "7 Star Fitness",
+  "branch": "Ahmedabad",
+  "base_url": "https://ahmurban.gymtime.in/",
+  "api_url": "https://ahmurban.gymtime.in/AndroidApi/sql_server_api.php",
+  "bootstrap_url": "http://demo.gymtime.in/AndroidApi/sql_server_api.php",
+  "password": null,
+  "password_status": "not supplied or observed; no password field in the observed login_member request",
+  "otp": null,
+  "session_token": null,
+  "verified_date_utc": "2026-11-04"
+}

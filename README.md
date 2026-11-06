@@ -7,6 +7,14 @@ Reverse engineering of **Gymtime Member** (`com.ndgymtime.membertest`), APK
 Gym server lookup, member login lookup, branch lookup, and biometric attendance
 were successfully called on **4 November 2026**. Other entries remain static-only.
 
+## Flutter app
+
+A personal **biometric attendance dashboard** built on top of the verified
+`show_biometric_attendance` lookup lives in [`app/`](app/). It renders your
+check-in dates as stat widgets, a calendar heatmap, and charts. See
+[app/README.md](app/README.md) to build and run it (the Android APK is the most
+reliable way to see live data).
+
 ## Start here
 
 - [My account: username, codes, IDs, and password status](MY_ACCOUNT.md)
