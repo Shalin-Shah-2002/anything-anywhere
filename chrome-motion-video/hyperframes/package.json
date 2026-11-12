@@ -1,17 +1,17 @@
 {
-  "name": "hyperframes",
+  "name": "chrome-ai-hyperframes",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "HyperFrames scenes (problem + end card) for the Chrome \u00d7 Gemini spot",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "hyperframes preview",
+    "check": "hyperframes check",
+    "render": "hyperframes render -f 60 -q delivery -o renders/hf-scenes.mp4"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@fontsource-variable/google-sans-flex": "^5.3.2",
     "gsap": "^3.15.1",
     "hyperframes": "^0.9.38"
-  }
+  },
+  "private": true,
+  "type": "module"
 }

@@ -1,0 +1,188 @@
+{
+  "length_s": 30.0,
+  "bed": "synthesized (scripts/make_audio.py)",
+  "cues": [
+    {
+      "sfx": "pop",
+      "rate": 1.0,
+      "picture_s": 0.82,
+      "gain": 0.55,
+      "why": "notification prompt lands"
+    },
+    {
+      "sfx": "pop",
+      "rate": 0.9,
+      "picture_s": 1.28,
+      "gain": 0.5,
+      "why": "checkout form lands"
+    },
+    {
+      "sfx": "glitch-1",
+      "rate": 1.0,
+      "picture_s": 2.16,
+      "gain": 0.32,
+      "why": "fake virus alert"
+    },
+    {
+      "sfx": "pop",
+      "rate": 1.12,
+      "picture_s": 2.42,
+      "gain": 0.45,
+      "why": "fake prize popup"
+    },
+    {
+      "sfx": "riser",
+      "rate": 1.0,
+      "picture_s": 3.783,
+      "gain": 0.28,
+      "why": "build into the implosion"
+    },
+    {
+      "sfx": "impact-bass-1",
+      "rate": 1.0,
+      "picture_s": 3.867,
+      "gain": 0.3,
+      "why": "dot bursts into Chrome"
+    },
+    {
+      "sfx": "sparkle",
+      "rate": 1.0,
+      "picture_s": 5.367,
+      "gain": 0.3,
+      "why": "Gemini line appears"
+    },
+    {
+      "sfx": "whoosh",
+      "rate": 1.0,
+      "picture_s": 6.8,
+      "gain": 0.42,
+      "why": "zoom-blur into SC 03"
+    },
+    {
+      "sfx": "whoosh",
+      "rate": 0.86,
+      "picture_s": 10.067,
+      "gain": 0.4,
+      "why": "whip into SC 04"
+    },
+    {
+      "sfx": "whoosh",
+      "rate": 1.14,
+      "picture_s": 13.333,
+      "gain": 0.4,
+      "why": "zoom-blur into SC 05"
+    },
+    {
+      "sfx": "whoosh",
+      "rate": 0.93,
+      "picture_s": 16.6,
+      "gain": 0.4,
+      "why": "whip into SC 06"
+    },
+    {
+      "sfx": "whoosh",
+      "rate": 0.8,
+      "picture_s": 20.367,
+      "gain": 0.36,
+      "why": "SC 06 recedes"
+    },
+    {
+      "sfx": "whoosh",
+      "rate": 1.07,
+      "picture_s": 23.3,
+      "gain": 0.4,
+      "why": "zoom-blur into SC 08"
+    },
+    {
+      "sfx": "whoosh-cinematic",
+      "rate": 1.0,
+      "picture_s": 26.4,
+      "gain": 0.26,
+      "why": "Chrome-colour wipe into the end card"
+    },
+    {
+      "sfx": "click-soft",
+      "rate": 1.0,
+      "picture_s": 17.7,
+      "gain": 0.55,
+      "why": "tick: finds the supplies"
+    },
+    {
+      "sfx": "click-soft",
+      "rate": 1.1,
+      "picture_s": 19.667,
+      "gain": 0.55,
+      "why": "tick: adds to cart"
+    },
+    {
+      "sfx": "pop",
+      "rate": 0.85,
+      "picture_s": 19.967,
+      "gain": 0.4,
+      "why": "amber: asks before buying"
+    },
+    {
+      "sfx": "pop",
+      "rate": 1.0,
+      "picture_s": 20.533,
+      "gain": 0.3,
+      "why": "card 1 lands"
+    },
+    {
+      "sfx": "pop",
+      "rate": 1.08,
+      "picture_s": 20.65,
+      "gain": 0.3,
+      "why": "card 2 lands"
+    },
+    {
+      "sfx": "pop",
+      "rate": 0.95,
+      "picture_s": 20.767,
+      "gain": 0.3,
+      "why": "card 3 lands"
+    },
+    {
+      "sfx": "pop",
+      "rate": 1.15,
+      "picture_s": 20.883,
+      "gain": 0.3,
+      "why": "card 4 lands"
+    },
+    {
+      "sfx": "whoosh",
+      "rate": 1.3,
+      "picture_s": 23.733,
+      "gain": 0.22,
+      "why": "malware alert swings in"
+    },
+    {
+      "sfx": "pop",
+      "rate": 1.0,
+      "picture_s": 24.633,
+      "gain": 0.4,
+      "why": "stat chip lands"
+    },
+    {
+      "sfx": "impact-bass-2",
+      "rate": 1.0,
+      "picture_s": 26.62,
+      "gain": 0.14,
+      "why": "Chrome logo lands"
+    },
+    {
+      "sfx": "sparkle",
+      "rate": 1.0,
+      "picture_s": 27.5,
+      "gain": 0.28,
+      "why": "Gemini line"
+    },
+    {
+      "sfx": "pop",
+      "rate": 1.0,
+      "picture_s": 27.86,
+      "gain": 0.45,
+      "why": "URL button"
+    }
+  ]
+}

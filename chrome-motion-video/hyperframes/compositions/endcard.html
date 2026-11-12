@@ -1,0 +1,167 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Google Sans Flex";
+      src: url("assets/fonts/GoogleSansFlex.woff2") format("woff2");
+      font-weight: 1 1000;
+      font-display: block;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Google Sans Flex", sans-serif;
+      background: #f7f8fb;
+      color: #16191e;
+    }
+    #e-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(38% 52% at 12% 16%, rgba(66, 133, 244, 0.22), transparent 70%),
+        radial-gradient(34% 48% at 90% 86%, rgba(52, 168, 83, 0.17), transparent 70%),
+        radial-gradient(30% 40% at 80% 8%, rgba(251, 188, 4, 0.18), transparent 70%),
+        radial-gradient(30% 44% at 26% 96%, rgba(234, 67, 53, 0.13), transparent 70%),
+        #f7f8fb;
+    }
+    .e-ring {
+      position: absolute;
+      left: 760px;
+      top: 160px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      border: 6px solid;
+      opacity: 0;
+    }
+    #e-logo {
+      position: absolute;
+      left: 850px;
+      top: 250px;
+      width: 220px;
+      height: 220px;
+      opacity: 0;
+    }
+    #e-head {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 500px;
+      text-align: center;
+      font-size: 132px;
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      white-space: pre;
+    }
+    #e-head span {
+      display: inline-block;
+      font-weight: 200;
+      opacity: 0;
+    }
+    #e-sub {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 668px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      opacity: 0;
+    }
+    #e-sub img {
+      width: 52px;
+      height: 52px;
+    }
+    #e-sub b {
+      font-size: 56px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      background: linear-gradient(90deg, #4796e3 0%, #9177c7 55%, #ca6673 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      padding: 0 4px 8px;
+    }
+    #e-pill {
+      position: absolute;
+      left: 760px;
+      top: 788px;
+      width: 400px;
+      height: 84px;
+      border-radius: 42px;
+      background: #1a73e8;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      box-shadow: 0 18px 40px rgba(26, 115, 232, 0.32);
+      opacity: 0;
+    }
+    #e-fine {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 980px;
+      text-align: center;
+      font-size: 25px;
+      color: #565d69;
+      opacity: 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="endcard" data-width="1920" data-height="1080">
+    <div id="e-bg"></div>
+    <div class="e-ring" id="e-ring-0" style="border-color: #4285f4"></div>
+    <div class="e-ring" id="e-ring-1" style="border-color: #ea4335"></div>
+    <div class="e-ring" id="e-ring-2" style="border-color: #fbbc04"></div>
+    <div class="e-ring" id="e-ring-3" style="border-color: #34a853"></div>
+    <img id="e-logo" src="assets/chrome-logo.svg" alt="Chrome logo" />
+    <div id="e-head" data-layout-allow-overflow><span>B</span><span>r</span><span>o</span><span>w</span><span>s</span><span>e</span><span> </span><span>s</span><span>m</span><span>a</span><span>r</span><span>t</span><span>e</span><span>r</span><span>.</span></div>
+    <div id="e-sub"><img src="assets/gemini-icon.svg" alt="" /><b>Chrome, with Gemini.</b></div>
+    <div id="e-pill">google.com/chrome</div>
+    <div id="e-fine">Features vary by country, language, device and plan. Auto browse: U.S. Google AI Pro and Ultra subscribers.</div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // Logo lands: spins in and springs to size
+      tl.fromTo("#e-logo", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 0.3);
+      tl.fromTo("#e-logo", { scale: 0.3 }, { scale: 1, duration: 0.75, ease: "back.out(1.5)" }, 0.3);
+      tl.fromTo("#e-logo", { rotation: -150 }, { rotation: 0, duration: 0.95, ease: "expo.out" }, 0.3);
+
+      // One ripple of the four colours as it lands
+      for (let i = 0; i < 4; i++) {
+        tl.fromTo(
+          "#e-ring-" + i,
+          { opacity: 0.85, scale: 0.55 },
+          { opacity: 0, scale: 1.9 + i * 0.25, duration: 1.1, ease: "expo.out" },
+          0.48 + i * 0.07,
+        );
+      }
+
+      // Headline: letters a frame or two apart, thin to bold
+      tl.fromTo(
+        "#e-head span",
+        { opacity: 0, y: 26, fontWeight: 200 },
+        { opacity: 1, y: 0, fontWeight: 680, duration: 0.6, ease: "expo.out", stagger: 0.028 },
+        0.78,
+      );
+
+      // Gemini line blurs in, sparkle turns into place
+      tl.fromTo("#e-sub", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power2.out" }, 1.28);
+      tl.fromTo("#e-sub img", { rotation: -90, scale: 0.5 }, { rotation: 0, scale: 1, duration: 0.6, ease: "expo.out" }, 1.28);
+
+      // Call to action, then the fine print
+      tl.fromTo("#e-pill", { opacity: 0, scale: 0.84, y: 16 }, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.7)" }, 1.62);
+      tl.fromTo("#e-fine", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 1.95);
+
+      window.__timelines["endcard"] = tl;
+    })();
+  </script>
+</template>

@@ -3,3 +3,6 @@ out/
 # Raw product videos (~280 MB) are re-downloadable: research/scripts/download.sh research/sources.tsv research/downloads
 research/downloads/**/*.mp4
 research/downloads/**/*.webm
+# HyperFrames working files (the split scene clips used by Remotion live in remotion/public/hf/)
+hyperframes/renders/
+hyperframes/.hyperframes/

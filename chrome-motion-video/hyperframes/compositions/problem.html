@@ -1,0 +1,459 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Google Sans Flex";
+      src: url("assets/fonts/GoogleSansFlex.woff2") format("woff2");
+      font-weight: 1 1000;
+      font-display: block;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Google Sans Flex", sans-serif;
+      background: #0b0d12;
+    }
+    #p-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(75% 75% at 50% 42%, #1a1f2b 0%, #0b0d12 72%);
+    }
+    #p-flat {
+      position: absolute;
+      inset: 0;
+      background: #0b0d12;
+      opacity: 0;
+    }
+    /* Browser window */
+    #p-win {
+      position: absolute;
+      left: 210px;
+      top: 80px;
+      width: 1500px;
+      height: 690px;
+      border-radius: 22px;
+      background: #141821;
+      border: 1px solid #262d3a;
+      box-shadow: 0 40px 120px rgba(0, 0, 0, 0.55);
+      overflow: hidden;
+      opacity: 0;
+    }
+    #p-strip {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 54px;
+      background: #0e1118;
+    }
+    #p-tabs {
+      position: absolute;
+      left: 16px;
+      top: 12px;
+      width: 1468px;
+      height: 42px;
+    }
+    .p-tab {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 220px;
+      height: 42px;
+      opacity: 0;
+    }
+    .p-tab-bg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 216px;
+      height: 42px;
+      border-radius: 12px 12px 0 0;
+      background: #1f2532;
+      transform-origin: 0 50%;
+    }
+    .p-tab-bg i {
+      position: absolute;
+      left: 42px;
+      top: 17px;
+      width: 120px;
+      height: 8px;
+      border-radius: 4px;
+      background: #3a4253;
+    }
+    .p-fav {
+      position: absolute;
+      left: 14px;
+      top: 13px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+    }
+    #p-omni {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      top: 66px;
+      height: 40px;
+      border-radius: 20px;
+      background: #1d2230;
+    }
+    #p-omni i {
+      position: absolute;
+      left: 22px;
+      top: 15px;
+      width: 360px;
+      height: 10px;
+      border-radius: 5px;
+      background: #343c4d;
+    }
+    .p-sk {
+      position: absolute;
+      border-radius: 12px;
+      background: #1a1f2a;
+    }
+    /* Popups */
+    .p-pop {
+      position: absolute;
+      border-radius: 18px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+      opacity: 0;
+      color: #1f2533;
+    }
+    #p-notif {
+      left: 300px;
+      top: 210px;
+      width: 560px;
+      height: 112px;
+      background: #ffffff;
+    }
+    #p-notif .bell {
+      position: absolute;
+      left: 22px;
+      top: 26px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #e8f0fe;
+    }
+    #p-notif .bell svg {
+      position: absolute;
+      left: 16px;
+      top: 15px;
+      width: 28px;
+      height: 30px;
+    }
+    #p-notif p {
+      position: absolute;
+      left: 100px;
+      top: 22px;
+      width: 430px;
+      font-size: 22px;
+      line-height: 1.25;
+      font-weight: 500;
+    }
+    #p-notif .btns {
+      position: absolute;
+      right: 22px;
+      bottom: 14px;
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      font-size: 18px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 99px;
+      background: #e9edf3;
+    }
+    .btn.blue {
+      background: #1a73e8;
+      color: #fff;
+    }
+    #p-form {
+      left: 760px;
+      top: 300px;
+      width: 430px;
+      height: 360px;
+      background: #ffffff;
+      padding: 26px 28px;
+    }
+    #p-form h4 {
+      font-size: 24px;
+      font-weight: 650;
+    }
+    #p-form small {
+      display: block;
+      margin-top: 4px;
+      font-size: 17px;
+      color: #6b7280;
+    }
+    .p-field {
+      position: absolute;
+      left: 28px;
+      width: 374px;
+      height: 40px;
+      border-radius: 10px;
+      background: #eef1f6;
+      overflow: hidden;
+    }
+    .p-fill {
+      position: absolute;
+      left: 12px;
+      top: 15px;
+      height: 10px;
+      border-radius: 5px;
+      background: #9aa3b2;
+      transform-origin: 0 50%;
+    }
+    #p-scam {
+      left: 1180px;
+      top: 190px;
+      width: 470px;
+      height: 170px;
+      background: #d93025;
+      color: #fff;
+      padding: 24px 28px;
+    }
+    #p-scam h4 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 32px;
+      font-weight: 750;
+      letter-spacing: -0.01em;
+    }
+    #p-scam p {
+      margin-top: 8px;
+      font-size: 20px;
+      opacity: 0.92;
+    }
+    #p-scam .btn {
+      position: absolute;
+      right: 24px;
+      bottom: 18px;
+      background: #fff;
+      color: #d93025;
+    }
+    #p-prize {
+      left: 1260px;
+      top: 430px;
+      width: 400px;
+      height: 120px;
+      background: #fdd663;
+      padding: 22px 26px;
+    }
+    #p-prize h4 {
+      font-size: 26px;
+      font-weight: 700;
+    }
+    #p-prize p {
+      margin-top: 6px;
+      font-size: 19px;
+      color: #5f4a00;
+    }
+    #p-cookie {
+      left: 240px;
+      top: 650px;
+      width: 1440px;
+      height: 92px;
+      border-radius: 16px;
+      background: #262c39;
+      color: #dfe3ea;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 21px;
+    }
+    /* Kinetic lines */
+    .p-mask {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 820px;
+      height: 170px;
+      overflow: hidden;
+      text-align: center;
+    }
+    .p-line {
+      font-size: 132px;
+      line-height: 170px;
+      font-weight: 720;
+      letter-spacing: -0.045em;
+      color: #ffffff;
+    }
+    .p-line .tabs { color: #8ab4f8; }
+    .p-line .forms { color: #fdd663; }
+    .p-line .scams { color: #f28b82; }
+    #p-dot {
+      position: absolute;
+      left: 948px;
+      top: 528px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #ffffff;
+    }
+  </style>
+
+  <div id="root" data-composition-id="problem" data-width="1920" data-height="1080">
+    <div id="p-bg"></div>
+    <div id="p-flat"></div>
+
+    <div id="p-win">
+      <div id="p-strip">
+        <div id="p-tabs">
+          <div class="p-tab" id="p-tab-0"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#ea4335"></b></div>
+          <div class="p-tab" id="p-tab-1"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#24c1e0"></b></div>
+          <div class="p-tab" id="p-tab-2"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#fbbc04"></b></div>
+          <div class="p-tab" id="p-tab-3"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#fa7b17"></b></div>
+          <div class="p-tab" id="p-tab-4"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#a142f4"></b></div>
+          <div class="p-tab" id="p-tab-5"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#4285f4"></b></div>
+          <div class="p-tab" id="p-tab-6"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#f538a0"></b></div>
+          <div class="p-tab" id="p-tab-7"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#34a853"></b></div>
+          <div class="p-tab" id="p-tab-8"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#ea4335"></b></div>
+          <div class="p-tab" id="p-tab-9"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#24c1e0"></b></div>
+          <div class="p-tab" id="p-tab-10"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#fbbc04"></b></div>
+          <div class="p-tab" id="p-tab-11"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#fa7b17"></b></div>
+          <div class="p-tab" id="p-tab-12"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#a142f4"></b></div>
+          <div class="p-tab" id="p-tab-13"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#4285f4"></b></div>
+          <div class="p-tab" id="p-tab-14"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#f538a0"></b></div>
+          <div class="p-tab" id="p-tab-15"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#34a853"></b></div>
+          <div class="p-tab" id="p-tab-16"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#ea4335"></b></div>
+          <div class="p-tab" id="p-tab-17"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#24c1e0"></b></div>
+          <div class="p-tab" id="p-tab-18"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#fbbc04"></b></div>
+          <div class="p-tab" id="p-tab-19"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#fa7b17"></b></div>
+          <div class="p-tab" id="p-tab-20"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#a142f4"></b></div>
+          <div class="p-tab" id="p-tab-21"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#4285f4"></b></div>
+          <div class="p-tab" id="p-tab-22"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#f538a0"></b></div>
+          <div class="p-tab" id="p-tab-23"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#34a853"></b></div>
+          <div class="p-tab" id="p-tab-24"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#ea4335"></b></div>
+          <div class="p-tab" id="p-tab-25"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#24c1e0"></b></div>
+          <div class="p-tab" id="p-tab-26"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#fbbc04"></b></div>
+          <div class="p-tab" id="p-tab-27"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#fa7b17"></b></div>
+          <div class="p-tab" id="p-tab-28"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#a142f4"></b></div>
+          <div class="p-tab" id="p-tab-29"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#4285f4"></b></div>
+          <div class="p-tab" id="p-tab-30"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#f538a0"></b></div>
+          <div class="p-tab" id="p-tab-31"><div class="p-tab-bg"><i></i></div><b class="p-fav" style="background:#34a853"></b></div>
+        </div>
+      </div>
+      <div id="p-omni"><i></i></div>
+      <div class="p-sk" style="left: 24px; top: 130px; width: 900px; height: 60px"></div>
+      <div class="p-sk" style="left: 24px; top: 214px; width: 640px; height: 300px"></div>
+      <div class="p-sk" style="left: 690px; top: 214px; width: 380px; height: 140px"></div>
+      <div class="p-sk" style="left: 690px; top: 374px; width: 380px; height: 140px"></div>
+      <div class="p-sk" style="left: 1100px; top: 130px; width: 376px; height: 384px"></div>
+    </div>
+
+    <div id="p-notif" class="p-pop" data-layout-ignore>
+      <div class="bell">
+        <svg viewBox="0 0 24 26"><path fill="#1a73e8" d="M12 26a3 3 0 0 0 3-3H9a3 3 0 0 0 3 3zm9-7-2-2v-6a7 7 0 0 0-5.5-6.8V3a1.5 1.5 0 0 0-3 0v1.2A7 7 0 0 0 5 11v6l-2 2v1.5h18z"/></svg>
+      </div>
+      <p>deals-daily.example wants to show notifications</p>
+      <div class="btns"><span class="btn">Block</span><span class="btn blue">Allow</span></div>
+    </div>
+
+    <div id="p-cookie" class="p-pop" data-layout-ignore>
+      <span>We value your privacy. Choose your preferences across 214 partners.</span>
+      <span style="display: flex; gap: 10px"><span class="btn" style="background: #3a4253; color: #dfe3ea">Manage</span><span class="btn blue">Accept all</span></span>
+    </div>
+
+    <div id="p-form" class="p-pop" data-layout-ignore>
+      <h4>Checkout</h4>
+      <small>Step 3 of 7 · Shipping details</small>
+      <div class="p-field" style="top: 110px"><b class="p-fill" id="p-fill-0" style="width: 180px"></b></div>
+      <div class="p-field" style="top: 160px"><b class="p-fill" id="p-fill-1" style="width: 260px"></b></div>
+      <div class="p-field" style="top: 210px"><b class="p-fill" id="p-fill-2" style="width: 120px"></b></div>
+      <div class="p-field" style="top: 260px"><b class="p-fill" id="p-fill-3" style="width: 220px"></b></div>
+      <div class="p-field" style="top: 310px; height: 30px; background: transparent"><b class="p-fill" id="p-fill-4" style="width: 150px; top: 8px; background: #c4cad4"></b></div>
+    </div>
+
+    <div id="p-scam" class="p-pop" data-layout-ignore>
+      <h4>
+        <svg width="34" height="30" viewBox="0 0 24 21"><path fill="#fff" d="M12 0 24 21H0zm-1 8v6h2V8zm0 8v2h2v-2z"/></svg>
+        Virus detected!
+      </h4>
+      <p>Your device is at risk. Clean it now.</p>
+      <span class="btn">Clean now</span>
+    </div>
+
+    <div id="p-prize" class="p-pop" data-layout-ignore>
+      <h4>You won a $1,000 gift card!</h4>
+      <p>Claim it in the next 59 seconds</p>
+    </div>
+
+    <div class="p-mask" data-layout-allow-overflow data-layout-allow-occlusion><div class="p-line" id="p-l1">Too many <span class="tabs">tabs.</span></div></div>
+    <div class="p-mask" data-layout-allow-overflow data-layout-allow-occlusion><div class="p-line" id="p-l2">Endless <span class="forms">forms.</span></div></div>
+    <div class="p-mask" data-layout-allow-overflow data-layout-allow-occlusion><div class="p-line" id="p-l3">Sneaky <span class="scams">scams.</span></div></div>
+
+    <div id="p-dot"></div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // --- Tab strip: 3 tabs multiply to 32 while each squeezes thinner (a pure function of `n`).
+      const tabs = Array.from(document.querySelectorAll("#p-tabs .p-tab"));
+      const STRIP = 1468;
+      const state = { n: 3 };
+      function layoutTabs() {
+        const n = state.n;
+        const w = Math.min(220, STRIP / n);
+        for (let i = 0; i < tabs.length; i++) {
+          const vis = Math.max(0, Math.min(1, n - i));
+          const el = tabs[i];
+          el.style.opacity = vis;
+          el.style.transform = "translate(" + (i * w).toFixed(2) + "px," + (10 * (1 - vis)).toFixed(2) + "px)";
+          el.firstElementChild.style.transform = "scaleX(" + ((w - 4) / 216).toFixed(4) + ")";
+          el.lastElementChild.style.opacity = w > 34 ? 1 : Math.max(0, (w - 22) / 12);
+        }
+      }
+      layoutTabs();
+
+      // Window arrives
+      tl.fromTo("#p-win", { opacity: 0, scale: 0.94, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "expo.out" }, 0);
+      // Tabs multiply, accelerating
+      tl.fromTo(state, { n: 3 }, { n: 32, duration: 2.55, ease: "power2.in", onUpdate: layoutTabs }, 0.12);
+
+      // Kinetic lines: rise out of the mask, pushed off by the next
+      tl.fromTo("#p-l1", { yPercent: 110 }, { yPercent: 0, duration: 0.5, ease: "expo.out" }, 0.18);
+      tl.to("#p-l1", { yPercent: -110, duration: 0.28, ease: "power3.in" }, 1.02);
+      tl.fromTo("#p-l2", { yPercent: 110 }, { yPercent: 0, duration: 0.5, ease: "expo.out" }, 1.16);
+      tl.to("#p-l2", { yPercent: -110, duration: 0.28, ease: "power3.in" }, 1.94);
+      tl.fromTo("#p-l3", { yPercent: 110 }, { yPercent: 0, duration: 0.5, ease: "expo.out" }, 2.08);
+
+      // Popups stack up
+      const pop = (sel, t, rot) =>
+        tl.fromTo(sel, { opacity: 0, scale: 0.82, y: 26, rotation: rot * 2 }, { opacity: 1, scale: 1, y: 0, rotation: rot, duration: 0.42, ease: "back.out(1.6)" }, t);
+      pop("#p-notif", 0.72, -2);
+      pop("#p-cookie", 1.3, 0);
+      pop("#p-form", 1.18, 1.5);
+      for (let i = 0; i < 5; i++) {
+        tl.fromTo("#p-fill-" + i, { scaleX: 0 }, { scaleX: 1, duration: 0.16, ease: "power2.out" }, 1.42 + i * 0.12);
+      }
+      pop("#p-scam", 2.06, 3);
+      tl.to("#p-scam", { keyframes: { rotation: [3, -4, 4, -3, 2, 0], ease: "none" }, duration: 0.42 }, 2.44);
+      pop("#p-prize", 2.32, -3);
+
+      // Implode: everything rushes into one white dot at the centre
+      const T = 3.02;
+      const pull = [
+        ["#p-prize", 1460, 490],
+        ["#p-scam", 1415, 275],
+        ["#p-form", 975, 480],
+        ["#p-cookie", 960, 696],
+        ["#p-notif", 580, 266],
+        ["#p-win", 960, 425],
+      ];
+      pull.forEach(([sel, cx, cy], i) => {
+        tl.to(sel, { x: 960 - cx, y: 540 - cy, scale: 0.02, opacity: 0, rotation: 0, duration: 0.48, ease: "power3.in" }, T + i * 0.035);
+      });
+      tl.to("#p-l3", { yPercent: -60, scale: 0.2, opacity: 0, duration: 0.42, ease: "power3.in" }, T + 0.06);
+      tl.to("#p-flat", { opacity: 1, duration: 0.5, ease: "power2.inOut" }, T);
+      tl.fromTo("#p-dot", { scale: 0 }, { scale: 1, duration: 0.24, ease: "back.out(2)" }, T + 0.42);
+
+      window.__timelines["problem"] = tl;
+    })();
+  </script>
+</template>
